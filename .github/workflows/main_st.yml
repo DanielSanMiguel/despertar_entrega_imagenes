@@ -1,0 +1,23 @@
+name: Wake Streamlit Every 6 Hours
+on:
+  schedule:
+    # Ejecutar cada 6 horas en punto (0:00, 6:00, 12:00, 18:00 UTC)
+    - cron: '0 */6 * * *'
+  # Ejecución manual opcional
+  workflow_dispatch:
+
+jobs:
+  wake-streamlit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Ping Streamlit App
+        run: |
+          echo "🕐 $(date) - Despertando app de Streamlit..."
+          
+          # Intentar acceder a la app
+          if curl -s -f "https://entregaimagenes.streamlit.app/" > /dev/null; then
+            echo "✅ App despertada exitosamente"
+          else
+            echo "⚠️  App no respondió, pero se envió la señal de wake-up"
+          fi
