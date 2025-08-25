@@ -2,7 +2,7 @@ name: Wake Streamlit Every 6 Hours
 on:
   schedule:
     # Ejecutar cada 6 horas en punto (0:00, 6:00, 12:00, 18:00 UTC)
-    - cron: '0 */6 * * *'
+    - cron: '0 */1 * * *'
   # Ejecución manual opcional
   workflow_dispatch:
 
